@@ -1,0 +1,4 @@
+z_wave_graph:
+  title: 'Z-Wave Graph'
+  icon: mdi:vector-square
+  url: https://bv9.duckdns.org:8123/local/z-wave-graph.html

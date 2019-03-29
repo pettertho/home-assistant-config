@@ -1,0 +1,195 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret time_zone
+  # Customization file
+  customize: !include customize.yaml
+  # Control over which devices are included/excluded
+  customize_glob: !include customize_glob.yaml
+  packages:
+    house_mode: !include package_house_mode.yaml
+
+################## HTTP #########################
+http:
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  api_password: !secret api_password
+  base_url: !secret base_url
+
+# Enables the frontend
+frontend:
+  javascript_version: latest
+
+# Enables configuration UI
+config:
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+
+# Text to speech
+tts:
+  - platform: google
+
+#################### Includes ##################
+cloud: !include google_actions.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+shell_command: !include shell_commands.yaml
+panel_iframe: !include panel_iframe.yaml
+scene: !include scenes.yaml
+
+##################### Z-wave ####################
+zwave:
+  usb_path: /dev/ttyAMA0
+  network_key: !secret zwave_network_key
+
+################### Homekit #######################
+homekit:
+  auto_start: false
+  filter:
+    include_entities:
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
+    - sensor.temperature_sov
+    - sensor.relativehumiditysov
+    - sensor.luminancesov
+    - lock.door_lock
+    - light.stueogkjokken
+    - light.fibarodimmerstue
+    - light.fibarodimmerkjokken
+    - light.fibarodimmergang
+    - light.fibarodimmersov
+    - light.fibarodimmerkontor
+    - scene.good_morning
+  entity_config:
+    light.fibarodimmerstue:
+      name: Dimmer Stue
+    light.fibarodimmerkjokken:
+      name: Dimmer Kjøkken 
+    light.fibarodimmergang:
+      name: Dimmer Gang
+    light.fibarodimmersov:
+      name: Dimmer Soverom
+    light.fibarodimmerkontor:
+      name: Dimmer Kontor
+
+################### Media player #######################
+media_player:
+  - platform: yamaha_musiccast
+    host: 10.0.0.63
+    source_ignore:
+      - "aux1"
+      - "aux2"
+      - "deezer"
+      - "juke"
+      - "mc_link"
+      - "napster"
+      - "net_radio"
+      - "optical"
+      - "server"
+      - "tidal"
+      - "tv"
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_secret
+
+
+binary_sensor:
+  - platform: template
+    sensors: 
+      motion_bedroom:
+        friendly_name: "Bevegelse"
+        device_class: motion
+        value_template: "{{is_state('sensor.multisensor_6_burglar', '8')}}"
+        entity_id: sensor.multisensor_6_burglar
+      motion_kjokken:
+        friendly_name: "Bevegelse"
+        device_class: motion
+        value_template: "{{is_state('sensor.fibaro_motion_burglar', '8')}}"
+        entity_id: sensor.fibaro_motion_burglar
+
+sensor:
+  - platform: template
+    sensors:
+      batt_lock:
+        friendly_name: 'Dørlås Batteri'
+        value_template: '{{ states.zwave.popp_012501_strike_lock_control_2.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      batt_multisensor:
+        friendly_name: 'Multisensor Batteri'
+        value_template: '{{ states.zwave.multisensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+
+#################### Zones ###################
+zone:
+#HDS
+  - name: jobb_guro
+    latitude: !secret zone_guro_jobb_lat
+    longitude: !secret zone_guro_jobb_lon
+    icon: mdi:mother-nurse
+    friendly_name: Jobb
+#MCB
+  - name: jobb_petter
+    latitude: !secret zone_petter_jobb_lat
+    longitude: !secret zone_petter_jobb_lon
+    friendly_name: Jobb
+
+#################### Input Boolean ########################
+input_boolean:
+  kitchen_auto_lights:
+    name: Kitchen Lights to go on/off
+    initial: off
+
+######################### iOS #############################
+ios:
+  push:
+    categories:
+      - name: temperatur
+        identifier: 'temp_low'
+        actions:
+          - identifier: 'TURN_ON_OVEN'
+            title: 'Skru på ovnen'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'

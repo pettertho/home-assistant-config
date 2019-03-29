@@ -1,0 +1,36 @@
+light.fibaro_system_fgd212_dimmer_2_level_5:
+  hidden: true
+  homebridge_hidden: true
+light.fibaro_system_fgd212_dimmer_2_level_3:
+  homebridge_hidden: true
+  hidden: true
+binary_sensor.popp_012501_strike_lock_control_sensor:
+  hidden: true
+  homebridge_hidden: true
+sensor.popp_012501_strike_lock_control_access_control:
+  hidden: true
+  homebridge_hidden: true
+zwave.popp_012501_strike_lock_control_2:
+  friendly_name: Dørlås
+sensor.aeotec_zw100_multisensor_6_ultraviolet_2:
+  friendly_name: UV-lys
+sensor.aeotec_zw100_multisensor_6_alarm_level_2:
+  hidden: true
+sensor.aeotec_zw100_multisensor_6_alarm_type_2:
+  hidden: true
+light.fibaro_system_fgd212_dimmer_2_level_4:
+  homebridge_hidden: true
+  hidden: true
+automation.start_homekit:
+  homebridge_hidden: true
+binary_sensor.aeotec_zw100_multisensor_6_sensor_2:
+  friendly_name: motionsensorsov
+binary_sensor.lock_sensor:
+  hidden: true
+  homebridge_hidden: true
+sensor.multisensor_6_burglar:
+  hidden: false
+device_tracker.guro_flatab_joakimsens_iphone:
+  friendly_name: Guro
+device_tracker.petters_iphone:
+  friendly_name: Petter

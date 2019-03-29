@@ -1,0 +1,61 @@
+# Generelle ikoner
+    'automation.*':
+      icon: mdi:arrow-right-drop-circle
+
+    'sensor.batt*':
+      icon: mdi:battery-charging-80
+
+    'sensor.*humidity*':
+      icon: mdi:weather-rainy
+    
+    'sensor.*luminance*':
+      icon: mdi:brightness-7
+
+# Skjul uønskede enheter
+    'sensor.*_sourcenodeid*':
+      hidden: true
+
+    'sensor.*_seismic*':
+      hidden: true
+
+    'sensor.radiator*_alarm*':
+      hidden: true
+
+    'sensor.fibaro*_alarm*':
+      hidden: true
+
+    'sensor.*multisensor*_alarm*':
+      hidden: true
+
+    'sensor.sensative*_alarm*':
+      hidden: true
+
+    'sensor.*_general_*':
+      hidden: true
+
+    'sensor.*_burglar*':
+      hidden: true
+
+    'sensor.*_current*':
+      hidden: true
+
+    'sensor.*_previous*':
+      hidden: true
+
+    'sensor.*_voltage*':
+      hidden: true
+
+    'sensor.*_power_management*':
+      hidden: true
+
+    'sensor.*_exporting*':
+      hidden: true
+
+    'sensor.fibaro_*_heat*':
+      hidden: true
+
+    'sensor.fibaro_*_system*':
+      hidden: true
+
+    '*.lock_sensor':
+      hidden: true

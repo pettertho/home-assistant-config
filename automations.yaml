@@ -1,0 +1,129 @@
+- alias: Start HomeKit
+  trigger:
+  - platform: event
+    event_type: zwave.network_ready
+  - platform: event
+    event_type: zwave.network_complete
+  action:
+  - service: homekit.start
+  id: f97fc7c755d44f24be8c4cedd5d461b7
+- alias: Turn on office light if motion
+  initial_state: false
+  trigger:
+    platform: state
+    entity_id: sensor.multisensor_6_burglar
+    from: '0'
+    to: '8'
+  action:
+    service: light.turn_on
+    entity_id: light.fibarodimmerkontor
+    data:
+      brightness: 80
+  id: 5ec3ec836b714a8f9d050a8cc64323a9
+- alias: Turn off office light if no motion
+  initial_state: false
+  trigger:
+    platform: state
+    entity_id: sensor.multisensor_6_burglar
+    from: '8'
+    to: '0'
+    for:
+      seconds: 5
+  action:
+    service: light.turn_off
+    entity_id: light.fibarodimmerkontor
+  id: 1939005d253c4e0688c356ed0ba5afe4
+- alias: ios_notification_temp_low
+  trigger:
+    platform: state
+    entity_id: sensor.multisensor_6_burglar
+    from: '0'
+    to: '8'
+  action:
+  - service: notify.ios_petters_iphone
+    data:
+      title: Lav temperatur med action
+      message: Temperaturen er under 17°C. Kanskje på tide å skru på ovnen?
+  id: 0c4d31e97ae448538f8b11aa20eb75f3
+- id: a5768b6b3f9f481aa7390f5d21ec705d
+  alias: house_empty
+  trigger:
+  - entity_id: sensor.household
+    from: home
+    platform: state
+    to: away
+  condition: []
+  action:
+  - data:
+      message: Sistemann har forlatt huset
+      title: Huset er tomt
+    service: notify.ios_petters_iphone
+  - data:
+      entity_id: group.all_lights
+    service: light.turn_off
+- id: 5039083bd2f94f62a1fccb8ee8c7772e
+  alias: house_not_empty
+  trigger:
+  - entity_id: sensor.household
+    from: away
+    platform: state
+    to: home
+  action:
+  - data:
+      message: Noen har kommet hjem
+      title: Huset er ikke tomt
+    service: notify.ios_petters_iphone
+  - alias: ''
+    data:
+      brightness_pct: 30
+      entity_id: light.fibarodimmergang
+    service: light.turn_on
+- alias: Generate Z-Wave graph
+  trigger:
+    platform: time_pattern
+    minutes: /5
+  action:
+  - service: shell_command.z_wave_graph
+  id: aa5eab606cb8403f8da2a45e2b48ecca
+- id: '1550337190815'
+  alias: Kjøkkenlys på ved bevegelse
+  trigger:
+  - entity_id: binary_sensor.motion_kjokken
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.fibarodimmerkjokken
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.kitchen_auto_lights
+    state: 'on'
+  action:
+  - alias: ''
+    data:
+      brightness_pct: '25'
+      entity_id: light.fibarodimmerkjokken
+    service: light.turn_on
+  initial_state: true
+- id: '1550349968793'
+  alias: Kjøkkenlys av ved ingen bevegelse
+  trigger:
+  - entity_id: binary_sensor.motion_kjokken
+    for: 00:10
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: input_boolean.kitchen_auto_lights
+    state: 'on'
+  - condition: state
+    entity_id: light.fibarodimmerkjokken
+    state: 'on'
+  action:
+  - alias: ''
+    data:
+      entity_id: light.fibarodimmerkjokken
+    service: light.turn_off
+  initial_state: true

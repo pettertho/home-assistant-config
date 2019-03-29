@@ -1,0 +1,1 @@
+z_wave_graph: /srv/homeassistant/bin/python3 ~/.homeassistant/custom_components/z-wave-graph.py

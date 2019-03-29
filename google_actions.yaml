@@ -1,0 +1,34 @@
+google_actions:
+    filter:
+      include_entities:
+        - light.fibarodimmerkontor
+        - light.fibarodimmersov
+        - light.fibarodimmerstue
+        - light.fibarodimmerkjokken
+        - light.fibarodimmergang
+        - scene.good_night
+        - lock.popp_012501_strike_lock_control_locked_2
+        - binary_sensor.motion_bedroom
+        - sensor.aeotec_zw100_multisensor_6_relative_humidity_3
+        - sensor.fibaro_motion_burglar
+        - scene.middagsbesok
+        - media_player.lydplanke_main
+      exclude_entities:
+        - light.fibaro_system_fgd212_dimmer_2_level_4
+        - light.fibaro_system_fgd212_dimmer_2_level_3
+    entity_config:
+      light.fibarodimmerkontor:
+        name: Light
+        aliases:
+         - Roof light
+        room: Office
+      light.fibarodimmersov:
+        name: Light
+        aliases:
+         - Roof light
+        room: Bedroom
+      light.fibarodimmerstue:
+        name: Light
+        aliases:
+         - Roof light
+        room: Stue

@@ -1,0 +1,88 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.bedroom
+    - group.office
+    - group.ute
+    - group.dimmere
+    - group.leilighet
+    - scene.good_morning
+    - scene.good_night
+    - scene.home
+bedroom:
+  name: Bedroom
+  entities:
+    - light.fibarodimmersov
+    - sensor.multisensor_6_burglar
+    - binary_sensor.motion_bedroom
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity_3
+office:
+  name: Office
+  entities:
+    - light.fibarodimmerkontor
+ute:
+  name: Ute
+  entities:
+    - lock.door_lock
+dimmere:
+  name: Dimmere
+  entities:
+    - light.fibarodimmerstue
+    - light.fibarodimmerkjokken
+    - light.fibarodimmergang
+    - light.fibarodimmersov
+    - light.fibarodimmerkontor
+stueogkjokken:
+  name: Stue + Kjøkken
+  entities:
+    - light.fibarodimmerstue
+    - light.fibarodimmerkjokken
+leilighet:
+  name: Leilighet
+  entities:
+    - light.fibarodimmersov
+    - light.fibarodimmerkontor
+misc:
+  view: yes
+  entities:
+    - sensor.relativehumiditysov
+    - sensor.temperature_sov
+    - binary_sensor.motionsensorsov
+    - group.z_wave
+    - group.batteries
+    - lock.popp_012501_strike_lock_control_locked_2
+    - group.stueogkjokken
+automation_view:
+    name: Automation
+    view: yes
+    entities:
+      - group.all_automations
+      - group.all_scripts
+      - automation.start_homekit
+      - automation.turn_on_office_light_if_motion
+      - automation.ios_notification_motion
+      - automation.ios_notification_temp_low
+      - automation.turn_off_office_light_if_no_motion
+z_wave:
+    name: Z Wave Devices
+    entities:
+      - zwave.zwaveme_razberry_controller_2016_zwave
+      - zwave.fibarodimmersov
+      - zwave.fibarodimmerkontor
+      - zwave.fibarodimmerstue
+      - zwave.fibarodimmerkjokken
+      - zwave.fibarodimmergang
+      - zwave.popp_012501_strike_lock_control_2
+      - zwave.multisensor
+      - zwave.fibaro_system_fgms001zw5_motion_sensor
+batteries:
+    name: Batteries
+    entities:
+      - sensor.batt_lock
+      - sensor.batt_multisensor
+household:
+    name: Household
+    entities:
+      - device_tracker.guro_flatab_joakimsens_iphone
+      - device_tracker.petters_iphone

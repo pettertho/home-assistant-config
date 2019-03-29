@@ -1,0 +1,9 @@
+light.fibaro_system_fgd212_dimmer_2_level_5:
+  ignored: false
+  polling_intensity: 0
+light.fibaro_system_fgd212_dimmer_2_level_3:
+  ignored: true
+  polling_intensity: 0
+sensor.popp_012501_strike_lock_control_alarm_level:
+  ignored: true
+  polling_intensity: 0
