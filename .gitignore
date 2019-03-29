@@ -19,4 +19,4 @@ known_devices.yaml
 OZW_Log.txt
 
 # Ignore ._-files
-._*.yaml
+._*
