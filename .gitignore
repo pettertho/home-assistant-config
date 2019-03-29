@@ -17,3 +17,6 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 OZW_Log.txt
+
+# Ignore ._-files
+._*.yaml
