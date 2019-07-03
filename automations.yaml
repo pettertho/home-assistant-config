@@ -48,7 +48,7 @@
 - id: a5768b6b3f9f481aa7390f5d21ec705d
   alias: house_empty
   trigger:
-  - entity_id: sensor.household
+  - entity_id: sensor.house_mode
     from: home
     platform: state
     to: away
@@ -64,7 +64,7 @@
 - id: 5039083bd2f94f62a1fccb8ee8c7772e
   alias: house_not_empty
   trigger:
-  - entity_id: sensor.household
+  - entity_id: sensor.house_mode
     from: away
     platform: state
     to: home
@@ -76,7 +76,7 @@
   - alias: ''
     data:
       brightness_pct: 30
-      entity_id: light.fibarodimmergang
+      entity_id: light.hallway_dimmer
     service: light.turn_on
 - alias: Generate Z-Wave graph
   trigger:
@@ -127,3 +127,74 @@
       entity_id: light.fibarodimmerkjokken
     service: light.turn_off
   initial_state: true
+- id: '1554234731461'
+  alias: Harmony – Living Room Lights On if off
+  trigger:
+  - event_data:
+      key: Up
+      source_name: Home Assistant
+      type: keypress
+    event_type: roku_command
+    platform: event
+  condition:
+  - condition: state
+    entity_id: light.living_room_dimmer
+    state: 'off'
+  action:
+  - data:
+      brightness: 10
+      entity_id: light.living_room_dimmer
+    service: light.turn_on
+- id: '1554234988604'
+  alias: Harmony – Living Room lights off if on
+  trigger:
+  - event_data:
+      key: Down
+      source_name: Home Assistant
+      type: keypress
+    event_type: roku_command
+    platform: event
+  condition:
+  - condition: state
+    entity_id: light.living_room_dimmer
+    state: 'on'
+  action:
+  - data:
+      entity_id: light.living_room_dimmer
+    service: light.turn_off
+- id: '1554235218354'
+  alias: Harmony – Living Room lights up if on
+  trigger:
+  - event_data:
+      key: Up
+      source_name: Home Assistant
+      type: keypress
+    event_type: roku_command
+    platform: event
+  condition:
+  - condition: state
+    entity_id: light.living_room_dimmer
+    state: 'on'
+  action:
+  - data:
+      brightness: 50
+      entity_id: light.living_room_dimmer
+    service: light.turn_on
+- id: '1554235353159'
+  alias: Harmony – Living Room lights down if up
+  trigger:
+  - event_data:
+      key: Down
+      source_name: Home Assistant
+      type: keypress
+    event_type: roku_command
+    platform: event
+  condition:
+  - condition: state
+    entity_id: light.living_room_dimmer
+    state: 'on'
+  action:
+  - data:
+      brightness: 10
+      entity_id: light.living_room_dimmer
+    service: light.turn_on

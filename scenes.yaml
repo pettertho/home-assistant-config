@@ -1,40 +1,41 @@
 - name: Good Night
   entities:
-    light.fibarodimmergang: off
-    light.fibarodimmersov: off
-    light.fibarodimmerstue: off
-    light.fibarodimmerkjokken: off
-    light.fibarodimmerkontor: off
+    group.all_lights: off
 - name: Good Morning
   entities:
-    light.fibarodimmergang: 
+    light.hallway_dimmer: 
       state: on
       brightness_pct: 50
-    light.fibarodimmersov: 
+    light.bedroom_dimmer: 
       state: on
       brightness_pct: 5
 - name: Home
   entities:
-    light.fibarodimmergang: 
+    light.hallway_dimmer: 
       state: on
       brightness_pct: 25
-    light.fibarodimmersov: 
+    light.bedroom_dimmer: 
       state: on
       brightness_pct: 25
-    light.fibarodimmerstue: 
+    light.living_room_dimmer: 
       state: on
       brightness_pct: 25
-    light.fibarodimmerkjokken: 
+    light.kitchen_dimmer: 
       state: on
       brightness_pct: 25
 - name: Middagsbesøk
   entities:
-    light.fibarodimmergang: 
+    light.hallway_dimmer: 
       state: on
       brightness_pct: 10
-    light.fibarodimmerstue: 
+    light.living_room_dimmer: 
       state: on
       brightness_pct: 10
-    light.fibarodimmerkjokken: 
+    light.kitchen_dimmer: 
       state: on
       brightness_pct: 10
+    media_player.lydplanke_main:
+      state: on
+      source: hdmi1
+    media_player.stue:
+      state: on

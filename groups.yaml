@@ -33,11 +33,6 @@ dimmere:
     - light.fibarodimmergang
     - light.fibarodimmersov
     - light.fibarodimmerkontor
-stueogkjokken:
-  name: Stue + Kjøkken
-  entities:
-    - light.fibarodimmerstue
-    - light.fibarodimmerkjokken
 leilighet:
   name: Leilighet
   entities:
@@ -64,18 +59,6 @@ automation_view:
       - automation.ios_notification_motion
       - automation.ios_notification_temp_low
       - automation.turn_off_office_light_if_no_motion
-z_wave:
-    name: Z Wave Devices
-    entities:
-      - zwave.zwaveme_razberry_controller_2016_zwave
-      - zwave.fibarodimmersov
-      - zwave.fibarodimmerkontor
-      - zwave.fibarodimmerstue
-      - zwave.fibarodimmerkjokken
-      - zwave.fibarodimmergang
-      - zwave.popp_012501_strike_lock_control_2
-      - zwave.multisensor
-      - zwave.fibaro_system_fgms001zw5_motion_sensor
 batteries:
     name: Batteries
     entities:
@@ -86,3 +69,8 @@ household:
     entities:
       - device_tracker.guro_flatab_joakimsens_iphone
       - device_tracker.petters_iphone
+living_room_plus_kitchen:
+    name: Stue + Kjøkken
+    entities:
+      - light.living_room_dimmer
+      - light.kitchen_dimmer

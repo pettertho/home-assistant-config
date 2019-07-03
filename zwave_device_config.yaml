@@ -1,9 +1,59 @@
+sensor.bedroom_system_fgd212_dimmer_2_energy:
+  ignored: true
+  polling_intensity: 0
+sensor.bedroom_system_fgd212_dimmer_2_power_9:
+  ignored: true
+  polling_intensity: 0
+sensor.bedroom_system_fgd212_dimmer_2_power_10:
+  ignored: true
+  polling_intensity: 0
+sensor.hallway_system_fgd212_dimmer_2_energy:
+  ignored: true
+  polling_intensity: 0
+light.hallway_system_fgd212_dimmer_2_level_6:
+  ignored: true
+  polling_intensity: 0
+sensor.hallway_system_fgd212_dimmer_2_power_10:
+  ignored: true
+  polling_intensity: 0
+sensor.hallway_system_fgd212_dimmer_2_power_9:
+  ignored: true
+  polling_intensity: 0
+sensor.living_room_system_fgd212_dimmer_2_energy:
+  ignored: true
+  polling_intensity: 0
+light.living_room_system_fgd212_dimmer_2_level_6:
+  ignored: true
+  polling_intensity: 0
+sensor.living_room_system_fgd212_dimmer_2_power_10:
+  ignored: true
+  polling_intensity: 0
+sensor.living_room_system_fgd212_dimmer_2_power_9:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_system_fgd212_dimmer_2_energy:
+  ignored: true
+  polling_intensity: 0
+light.kitchen_system_fgd212_dimmer_2_level_6:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_system_fgd212_dimmer_2_power_10:
+  ignored: true
+  polling_intensity: 0
+sensor.kitchen_system_fgd212_dimmer_2_power_9:
+  ignored: true
+  polling_intensity: 0
+sensor.office_system_fgd212_dimmer_2_energy:
+  ignored: true
+  polling_intensity: 0
+light.office_system_fgd212_dimmer_2_level_6:
+  ignored: true
+  polling_intensity: 0
+sensor.office_system_fgd212_dimmer_2_power_10:
+  ignored: true
+  polling_intensity: 0
+sensor.office_system_fgd212_dimmer_2_power_9:
+  ignored: true
+  polling_intensity: 0
 light.fibaro_system_fgd212_dimmer_2_level_5:
-  ignored: false
-  polling_intensity: 0
-light.fibaro_system_fgd212_dimmer_2_level_3:
   ignored: true
-  polling_intensity: 0
-sensor.popp_012501_strike_lock_control_alarm_level:
-  ignored: true
-  polling_intensity: 0

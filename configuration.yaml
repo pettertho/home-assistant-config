@@ -68,7 +68,8 @@ weather:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 #################### Includes ##################
 cloud: !include google_actions.yaml
@@ -83,35 +84,28 @@ scene: !include scenes.yaml
 zwave:
   usb_path: /dev/ttyAMA0
   network_key: !secret zwave_network_key
+  device_config: !include zwave_device_config.yaml
 
 ################### Homekit #######################
 homekit:
   auto_start: false
   filter:
     include_entities:
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet_2
-    - sensor.temperature_sov
-    - sensor.relativehumiditysov
-    - sensor.luminancesov
-    - lock.door_lock
-    - light.stueogkjokken
-    - light.fibarodimmerstue
-    - light.fibarodimmerkjokken
-    - light.fibarodimmergang
-    - light.fibarodimmersov
-    - light.fibarodimmerkontor
-    - scene.good_morning
+      - light.bedroom_dimmer
+      - light.hallway_dimmer
+      - light.kitchen_dimmer
+      - light.living_room_dimmer
+      - light.office_dimmer
+      - light.stue_kjokken
+      - media_player.lydplanke_main
+    include_domains:
+      - scene
   entity_config:
-    light.fibarodimmerstue:
-      name: Dimmer Stue
-    light.fibarodimmerkjokken:
-      name: Dimmer Kjøkken 
-    light.fibarodimmergang:
-      name: Dimmer Gang
-    light.fibarodimmersov:
-      name: Dimmer Soverom
-    light.fibarodimmerkontor:
-      name: Dimmer Kontor
+    media_player.lydplanke_main:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: toggle_mute
 
 ################### Media player #######################
 media_player:
@@ -193,3 +187,27 @@ ios:
             authenticationRequired: yes
             destructive: yes
             behavior: 'default'
+
+light:
+  - platform: group
+    name: Stue + Kjøkken
+    entities:
+      - light.kitchen_dimmer
+      - light.living_room_dimmer
+
+########### Remote #################
+remote:
+  - platform: harmony
+    name: Harmony Stue
+    host: 10.0.0.3
+
+############## Emulated Hue ##############
+emulated_hue:
+  expose_by_default: false
+  entities:
+    light.living_room_dimmer:
+      hidden: false
+    light.kitchen_dimmer:
+      hidden: false
+    group.all_lights:
+      hidden: false

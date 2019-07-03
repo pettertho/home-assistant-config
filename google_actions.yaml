@@ -1,18 +1,19 @@
 google_actions:
     filter:
       include_entities:
-        - light.fibarodimmerkontor
-        - light.fibarodimmersov
-        - light.fibarodimmerstue
-        - light.fibarodimmerkjokken
-        - light.fibarodimmergang
+        - light.bedroom_dimmer
+        - light.hallway_dimmer
+        - light.kitchen_dimmer
+        - light.living_room_dimmer
+        - light.office_dimmer
         - scene.good_night
-        - lock.popp_012501_strike_lock_control_locked_2
-        - binary_sensor.motion_bedroom
-        - sensor.aeotec_zw100_multisensor_6_relative_humidity_3
-        - sensor.fibaro_motion_burglar
         - scene.middagsbesok
+        - scene.good_morning
+        - scene.home
         - media_player.lydplanke_main
+        - script.1554482423542
+        - script.1554482497132
+        - script.1554713054883
       exclude_entities:
         - light.fibaro_system_fgd212_dimmer_2_level_4
         - light.fibaro_system_fgd212_dimmer_2_level_3
